@@ -1,0 +1,15 @@
+#!/bin/bash
+
+GEO="$(fbset -s | awk '$1 == "geometry" { print $2":"$3 }')"
+WIDTH=$(echo "$GEO" | cut -d: -f1)
+HEIGHT=$(echo "$GEO" | cut -d: -f2)
+
+echo "Resolution: $WIDTH x $HEIGHT"
+
+xset -dpms
+xset s off
+xset s noblank
+
+unclutter &
+
+chromium-browser --window-position=0,0 --window-size=$WIDTH,$HEIGHT  --app="https://google.com/" --start-maximized --no-default-browser-check --start-fullscreen --kiosk --noerrdialogs --disable-translate --fast --fast-start --disable-features=TranslateUI --disk-cache-dir=/dev/null  --password-store=basic
