@@ -1,6 +1,6 @@
 #!/bin/bash
-
-GEO="$(fbset -s | awk '$1 == "geometry" { print $2":"$3 }')"
+PASSWORD="user"
+GEO="$(echo "$PASSWORD" | fbset -s | awk '$1 == "geometry" { print $2":"$3 }')"
 WIDTH=$(echo "$GEO" | cut -d: -f1)
 HEIGHT=$(echo "$GEO" | cut -d: -f2)
 
